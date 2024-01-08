@@ -2,6 +2,7 @@
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import { Head, Link, useForm } from "@inertiajs/vue3";
 import { ref } from "vue";
+import Modal from "@/Components/Modal.vue";
 import Table from "@/Components/Table.vue";
 import TableRow from "@/Components/TableRow.vue";
 import TableHeaderCell from "@/Components/TableHeaderCell.vue";
@@ -60,7 +61,16 @@ const deleteUser = (id) => {
                                 <Link :href="route('users.edit', user.id)" class="text-green-400 hover:text-green-600">Edit
                                 </Link>
                                 <button @click="confirmDeleteUser" class="text-red-400 hover:text-red-600">Delete</button>
-                                
+                                <Modal :show="showConfirmDeleteUserModal" @close="closeModal">
+                                    <div class="p-6">
+                                        <h2 class="text-lg font-semibold text-slate-800">Are you sure to delete this user?
+                                        </h2>
+                                        <div class="mt-6 flex space-x-4">
+                                            <DangerButton @click="deleteUser(user.id)">Delete</DangerButton>
+                                            <SecondaryButton @click="closeModal">Cancel</SecondaryButton>
+                                        </div>
+                                    </div>
+                                </Modal>
                             </TableDataCell>
                         </TableRow>
                     </template>
