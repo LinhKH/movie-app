@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -13,7 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Users/UserIndex');
+        $users = UserResource::collection(User::all());
+        return Inertia::render('Admin/Users/UserIndex', compact('users'));
     }
 
     /**
