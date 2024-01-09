@@ -81,7 +81,11 @@ watch(
                                 <TableDataCell>{{ rolePermission.id }}</TableDataCell>
                                 <TableDataCell>{{ rolePermission.name }}</TableDataCell>
                                 <TableDataCell class="space-x-4">
-                                    <Link method="DELETE" as="button" class="text-red-400 hover:text-red-600">Revoke</Link>
+                                    <Link :href="route('roles.permissions.destroy', [
+                                        role.id,
+                                        rolePermission.id,
+                                    ])
+                                        " method="DELETE" as="button" class="text-red-400 hover:text-red-600">Revoke</Link>
                                 </TableDataCell>
                             </TableRow>
                         </template>
